@@ -1,0 +1,12 @@
+<div *ngIf="movies && movies.length > 0" class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{category}}</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div *ngFor="let movie of movies;let i=index" class="col-md-2">
+        <app-movie [movie]="movie" *ngIf="i < 6"></app-movie>
+      </div>
+    </div>
+  </div>
+</div>

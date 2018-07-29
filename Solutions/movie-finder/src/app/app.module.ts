@@ -1,26 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'
+import { routesModule } from './app.routing';
+import { FormsModule } from '@angular/forms'
 
 import { AppComponent } from './app.component';
-import { MoviesComponent } from './movies/movies.component';
 import { NavigationComponent } from './navigation/navigation.component';
 
-import { MoviesService } from './service/movies.service';
-import { MovieComponent } from './movie/movie.component';
+import { MoviesModule } from './movies/movies.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MoviesComponent,
-    NavigationComponent,
-    MovieComponent
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    routesModule,
+    MoviesModule
   ],
-  providers: [MoviesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

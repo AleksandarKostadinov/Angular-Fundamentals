@@ -8,11 +8,9 @@ import { IMovie } from '../models/movie.model';
 })
 export class MovieComponent implements OnInit {
   @Input('movie') movie: IMovie;
-  @Input('i') i: number;
   
   constructor() { }
 
   ngOnInit() {
   }
-
 }
