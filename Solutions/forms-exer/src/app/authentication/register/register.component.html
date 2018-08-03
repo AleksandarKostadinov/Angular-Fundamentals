@@ -1,0 +1,89 @@
+<div class="container">
+  <div *ngIf="errorMessage" class="text-danger">{{errorMessage}}</div>
+  <h1>Registration Form</h1>
+  <form #registrationForm="ngForm" (ngSubmit)="register(username)" >
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" id="username" 
+        required
+        pattern="^[A-Z][A-Za-z\d]+$"
+        name="username"
+        #username="ngModel"
+        [(ngModel)]="model.username">
+      <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+        Username must start with a capital letter and must contain only letters and digits.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" 
+        required
+        pattern="^[A-Za-z\d]{4,16}$"
+        name="password"
+        #password="ngModel"
+        [(ngModel)]="model.password">
+      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+        Password must contain only letters and digits and must be between 4 and 16 symbols.
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" class="form-control" id="confirmPassword" 
+        required
+        compare="password"
+        name="confirmPassword"
+        #confirmPassword="ngModel"
+        [(ngModel)]="model.confirmPassword">
+        <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="alert alert-danger">
+          <div *ngIf="confirmPassword.errors['required']">The confirm password field is required!</div>
+          <div *ngIf="confirmPassword.errors['notequal']">The confirm password field must match the password!</div>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text" class="form-control" id="firstName"
+        required
+        name="firstName"
+        pattern="^[A-Z][A-Za-z]+$"
+        #firstName="ngModel"
+        [(ngModel)]="model.firstName">
+        <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+          <div *ngIf="firstName.errors['required']">First Name is required!</div>
+          <div *ngIf="firstName.errors['pattern']">First name must start with capital letter and can only contain letters.</div>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text" class="form-control" id="lastName"
+        required
+        pattern="^[A-Z][A-Za-z]+$"
+        name="lastName"
+        #lastName="ngModel"
+        [(ngModel)]="model.lastName">
+        <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
+          <div *ngIf="lastName.errors['required']">Last Name is required!</div>
+          <div *ngIf="lastName.errors['pattern']">Last Name must start with capital letter and can only contain letters.</div>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" class="form-control" id="email"
+        required
+        email
+        name="email"
+        #email="ngModel"
+        [(ngModel)]="model.email"> 
+    </div>
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="number" class="form-control" id="age"
+        name="age"
+        #age="ngModel"
+        [(ngModel)]="model.age">
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="registrationForm.invalid">Register</button>
+  </form>
+</div>
