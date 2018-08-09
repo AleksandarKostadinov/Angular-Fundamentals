@@ -9,39 +9,30 @@ import { ToastrModule } from "ngx-toastr";
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { SigninComponent } from './authentication/signin/signin.component';
-import { SignupComponent } from './authentication/signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { AuthService } from './authentication/auth.service';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
-import { AllFurnitureComponent } from './furniture/all-furniture/all-furniture.component';
-import { CreateFurnitureComponent } from './furniture/create-furniture/create-furniture.component';
-import { FurnitureDetailsComponent } from './furniture/furniture-details/furniture-details.component';
-import { FurnitureMineComponent } from './furniture/furniture-mine/furniture-mine.component';
 import { CustomFormsModule } from 'ng2-validation'
 import { FurnitureInterceptor } from './interceptors/furniture.interceptor';
+import { AuthModule } from './authentication/auth.module';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    SigninComponent,
-    SignupComponent,
-    HomeComponent,
-    AllFurnitureComponent,
-    CreateFurnitureComponent,
-    FurnitureDetailsComponent,
-    FurnitureMineComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    CustomFormsModule
+    CustomFormsModule,
+    AuthModule
   ],
   providers: [ 
     AuthService,

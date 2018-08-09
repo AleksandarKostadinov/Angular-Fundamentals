@@ -10,7 +10,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { tap } from "rxjs/operators";
 import { Router } from "@angular/router";
-import { ToastrService } from "../../../node_modules/ngx-toastr";
+import { ToastrService } from "ngx-toastr";
 
 @Injectable()
 export class FurnitureInterceptor implements HttpInterceptor {
@@ -24,12 +24,15 @@ export class FurnitureInterceptor implements HttpInterceptor {
       .pipe(tap((event: HttpEvent<any>)=> {
         if (event instanceof HttpResponse) {
           if (req.url.includes("furniture")) {
-            if (req.url.endsWith("create") && event.body && event.body.success) {
-              this.toastr.success(event.body.meassage, "Success")
+            if (req.url.endsWith("furniture/create") && event.body && event.body.success && req.method === "POST") {
+              this.toastr.success(event.body.message, "Success")
               this.router.navigate(["furniture/all"])
             }
 
-            
+            if (req.url.includes("furniture/delete/") && event.body && event.body.success && req.method === "DELETE") {
+              this.toastr.success(event.body.message, "Success")
+              this.router.navigate(["furniture/all"])
+            }
           }
         }
       }));

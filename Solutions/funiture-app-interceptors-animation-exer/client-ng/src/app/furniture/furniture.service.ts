@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '../../../node_modules/@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { FurnitureModel } from './models/funiture.model';
 
 const serverUrl = "http://localhost:5000/furniture"
@@ -8,6 +8,7 @@ const detailsUrl = serverUrl + "/details/";
 const createUrl = serverUrl + "/create";
 const myFurnitureUrl = serverUrl + "/mine";
 const deleteFunitureUrl = serverUrl + "/delete/";
+const editFurniture = serverUrl + "/edit/";
 
 
 @Injectable({
@@ -39,5 +40,9 @@ export class FurnitureService {
 
   deleteItem(id: string) {
     return this.http.delete(deleteFunitureUrl + id);
+  }
+
+  edit(id: string, body: FurnitureModel) {
+    return this.http.put(editFurniture + id, body);
   }
 }

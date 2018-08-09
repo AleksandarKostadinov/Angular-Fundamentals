@@ -10,7 +10,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { tap } from "rxjs/operators";
 import { Router } from "@angular/router";
-import { ToastrService } from "../../../node_modules/ngx-toastr";
+import { ToastrService } from "ngx-toastr";
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
@@ -49,6 +49,6 @@ export class JwtInterceptor implements HttpInterceptor {
   }
 
   private saveToken(data) {
-    localStorage.setItem("currentUser", JSON.stringify({ username: data.user.name, token: data.token }))
+    localStorage.setItem("currentUser", JSON.stringify({ username: data.user.name, token: data.token, isAdmin: data.user.isAdmin }))
   }
 }

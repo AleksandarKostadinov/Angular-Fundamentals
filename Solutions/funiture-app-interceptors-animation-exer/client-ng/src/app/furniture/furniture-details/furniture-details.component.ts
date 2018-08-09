@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FurnitureModel } from '../models/funiture.model';
-import { Observable } from '../../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
 import { FurnitureService } from '../furniture.service';
-import { ActivatedRoute } from '../../../../node_modules/@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-furniture-details',

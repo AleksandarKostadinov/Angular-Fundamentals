@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FurnitureModel } from '../models/funiture.model';
-import { Observable } from '../../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
 import { FurnitureService } from '../furniture.service';
-import { Router } from '../../../../node_modules/@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-furniture-mine',

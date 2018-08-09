@@ -9,7 +9,7 @@ import {
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { tap, catchError } from "rxjs/operators";
-import { ToastrService } from "../../../node_modules/ngx-toastr";
+import { ToastrService } from "ngx-toastr";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -25,7 +25,13 @@ export class ErrorInterceptor implements HttpInterceptor {
             break;
           case 400:
             if (req.url.endsWith('create')) {
-              this.toastr.error(err.error, "Warning!")
+              if (err.error.errors) {
+                let errorsEntries = Object.entries(err.error.errors);
+
+                this.toastr.error(errorsEntries.map((e, i) => `${i + 1}. ${e[1]}`).join(), "Warning!")
+              }
+
+              this.toastr.error(err.error.errors, "Warning!")
             } else {
               this.toastr.error(err.error.message, "Warning!")
             }

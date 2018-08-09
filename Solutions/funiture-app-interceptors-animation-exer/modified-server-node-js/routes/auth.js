@@ -1,6 +1,7 @@
 const express = require('express')
 const passport = require('passport')
 const validator = require('validator')
+const userData = require('../data/users');
 
 const router = new express.Router()
 
@@ -99,7 +100,7 @@ router.post('/login', (req, res, next) => {
   return passport.authenticate('local-login', (err, token, userData) => {
     if (err) {
       if (err.name === 'IncorrectCredentialsError') {
-        console.log('Invalid credentials')
+        console.log('Invalid credentials');
         return res.status(401).json({
           success: false,
           message: err.message
